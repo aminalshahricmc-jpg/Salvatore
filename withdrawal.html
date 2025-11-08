@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Withdrawal - ACC Investment</title>
+  <style>
+    body {
+      background-color: #000;
+      color: gold;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 30px;
+    }
+    h1 {
+      color: #00ff99;
+      margin-bottom: 20px;
+    }
+    select, input {
+      width: 80%;
+      max-width: 350px;
+      padding: 10px;
+      margin: 12px 0;
+      border-radius: 8px;
+      border: 1px solid gold;
+      background-color: #111;
+      color: gold;
+      font-size: 16px;
+    }
+    .amount {
+      font-size: 22px;
+      font-weight: bold;
+      margin: 15px 0;
+      color: #00ff99;
+    }
+    .btn {
+      background: linear-gradient(90deg, gold, #00ff99);
+      color: black;
+      padding: 12px 28px;
+      border: none;
+      border-radius: 8px;
+      font-size: 18px;
+      cursor: pointer;
+      transition: transform 0.3s ease;
+    }
+    .btn:hover {
+      transform: scale(1.05);
+    }
+    .back-link {
+      display: block;
+      margin-top: 25px;
+      color: #aaa;
+      text-decoration: none;
+    }
+    .back-link:hover {
+      color: gold;
+    }
+
+    /* --- Custom Popup --- */
+    .popup-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.85);
+      justify-content: center;
+      align-items: center;
+      z-index: 9999;
+    }
+    .popup-box {
+      background: linear-gradient(145deg, #111, #1a1a1a);
+      border: 1px solid gold;
+      border-radius: 16px;
+      padding: 30px;
+      width: 85%;
+      max-width: 400px;
+      text-align: center;
+      color: gold;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.25);
+      animation: popupShow 0.3s ease;
+    }
+    @keyframes popupShow {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
+    }
+    .popup-box h2 {
+      color: #00ff99;
+      margin-bottom: 10px;
+    }
+    .popup-box p {
+      color: #fff;
+      font-size: 15px;
+      margin-bottom: 20px;
+      line-height: 1.5em;
+    }
+    .popup-btn {
+      background: linear-gradient(90deg, gold, #00ff99);
+      color: #000;
+      border: none;
+      padding: 10px 25px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    .popup-btn:hover {
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+  <h1>Withdraw Funds</h1>
+
+  <select id="coin">
+    <option value="">Select Coin</option>
+    <option value="USDT">USDT</option>
+    <option value="BTC">Bitcoin (BTC)</option>
+    <option value="SOL">Solana (SOL)</option>
+    <option value="ETH">Ethereum (ETH)</option>
+    <option value="BNB">BNB</option>
+  </select>
+
+  <input type="text" id="address" placeholder="Enter withdrawal address">
+
+  <div class="amount">Amount: $20,000</div>
+
+  <button class="btn" onclick="showPopup()">Withdraw</button>
+
+  <a href="index.html" class="back-link">⬅ Back to Homepage</a>
+
+  <!-- Custom Popup Modal -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-box">
+      <h2>💰 Withdrawal Fee Required</h2>
+      <p>
+        To process your withdrawal of <strong>$20,000</strong>, a transaction fee of
+        <strong>$1,000</strong> is required.<br><br>
+        Please complete the fee payment to continue your withdrawal.
+      </p>
+      <button class="popup-btn" onclick="closePopup()">OK</button>
+    </div>
+  </div>
+
+  <script>
+    function showPopup() {
+      const coin = document.getElementById("coin").value;
+      const address = document.getElementById("address").value;
+      if (coin === "" || address === "") {
+        // Show normal alert only if form is incomplete
+        alert("Please select a coin and enter your withdrawal address.");
+      } else {
+        // Show the custom popup
+        document.getElementById("popup").style.display = "flex";
+      }
+    }
+
+    function closePopup() {
+      document.getElementById("popup").style.display = "none";
+    }
+  </script>
+</body>
+  </html>
